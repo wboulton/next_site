@@ -1,4 +1,4 @@
-function About() {
+export default async function About() {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '20px', marginTop: '30px' }}>
         <h1>About Me</h1>

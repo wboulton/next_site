@@ -14,7 +14,7 @@ function Writeups() {
                 {writeups.map((writeup, index) => (
                     <li key={index}>
                         <Link href={writeup.link}>
-                            <a>{writeup.name}</a>
+                            {writeup.name}
                         </Link>
                     </li>
                 ))}
