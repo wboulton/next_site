@@ -1,22 +1,18 @@
 import React from 'react';
 import ImageContent from './ImageContent';
+import fs from 'fs/promises';
+import path from 'path';
 
 async function fetchImages() {
-  let images: string[] = [];
-
-  try {
-    const response = await fetch('http://localhost:3000/Dog/images.json');
-    images = await response.json();
-  } catch (error) {
-    console.error('Error fetching images:', error);
-  }
+  const filePath = path.join(process.cwd(), 'public', 'Dog', 'images.json');
+  const data = await fs.readFile(filePath, 'utf8');
+  const images = JSON.parse(data);
 
   return images;
 }
 
 const Other = async () => {
   const images = await fetchImages();
-
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Doggo</h1>
