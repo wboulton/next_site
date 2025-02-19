@@ -26,8 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <TopBar /> {/* Add the TopBar component */}
-        <div style={{ paddingTop: '60px' }}> {/* Add padding to avoid content being hidden behind the fixed top bar */}
+        <TopBar />
+        <div style={{ paddingTop: '60px' }}>
           {children}
         </div>
       </body>
