@@ -11,7 +11,13 @@ export const writeups = [
           <li key={index} style={{ margin: '10px 0' }}>
             <a
               href={writeup.route}
-              style={{ color: 'blue', textDecoration: 'underline' }}
+              style={{
+                color: '#1d63b3',
+                textDecoration: 'underline',
+                display: 'block',
+                textAlign: 'center',
+                fontSize: '24px',
+              }}
             >
               {writeup.title}
             </a>
