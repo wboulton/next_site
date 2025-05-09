@@ -10,11 +10,12 @@ const writeups = [
 
 export default async function StoryPage({ params }: WriteupProps) {
   const resolvedParams = await params;
-  const story = writeups.find((writeup) => writeup.title === resolvedParams.title);
+  console.log(resolvedParams);
+  const writeup = writeups.find((writeup) => writeup.title === resolvedParams.title);
 
-  if (!story) {
+  if (!writeup) {
     return <div>404 writeup not found</div>;
   }
 
-  redirect(story.route);
+  redirect(writeup.route);
 }
