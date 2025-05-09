@@ -10,7 +10,6 @@ const writeups = [
 
 export default async function StoryPage({ params }: WriteupProps) {
   const resolvedParams = await params;
-  console.log(resolvedParams);
   const writeup = writeups.find((writeup) => writeup.writeup === resolvedParams.writeup);
 
   if (!writeup) {
