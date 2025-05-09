@@ -1,20 +1,20 @@
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
-function WriteupList({ writeups }: { writeups: { title: string; link: string }[] }) {
-    const router = useRouter();
+const writeups = [
+    { title: 'deadface2024', route: '/DaCube' },
+    { title: 'UC2025', route: '/calling_convention' },
+    { title: 'umd2025', route: '/cmsc351'}
+  ];
 
-    const handleRedirect = (link: string) => {
-        router.push(link);
-    };
-
+function WriteupList({ writeups }: { writeups: { title: string; route: string }[] }) {
     return (
         <ul style={{ listStyleType: 'none', padding: 0 }}>
             {writeups.map((writeup, index) => (
                 <li
                     key={index}
                     style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline', margin: '10px 0' }}
-                    onClick={() => handleRedirect(writeup.link)}
+                    onClick={() => redirect(writeup.route)}
                 >
                     {writeup.title}
                 </li>
@@ -23,4 +23,6 @@ function WriteupList({ writeups }: { writeups: { title: string; link: string }[]
     );
 }
 
-export default WriteupList;
+export default function Page() {
+    return <WriteupList writeups={writeups} />;
+}
