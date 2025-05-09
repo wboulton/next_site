@@ -16,7 +16,7 @@ const customRenderers = {
 };
 
 export default async function writeupRender() {
-  const filePath = path.join(process.cwd(), 'DaCube', 'DeadFace-2024-DaCube.md');
+  const filePath = path.join(process.cwd(), 'src', 'app', 'DaCube', 'DeadFace-2024-DaCube.md');
   const markdown = await fs.readFile(filePath, 'utf8');
 
   return (

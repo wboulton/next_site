@@ -16,7 +16,7 @@ const customRenderers = {
 };
 
 export default async function writeupRender() {
-  const filePath = path.join(process.cwd(), 'calling_convention', 'Bearcat-World-Tour-2025.md');
+  const filePath = path.join(process.cwd(), 'src', 'app', 'calling_convention', 'Bearcat-World-Tour-2025.md');
   const markdown = await fs.readFile(filePath, 'utf8');
 
   return (
