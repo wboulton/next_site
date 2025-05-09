@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import ReactMarkdown from 'react-markdown';
+import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 const customRenderers = {
@@ -20,8 +20,8 @@ export default async function writeupRender() {
   const markdown = await fs.readFile(filePath, 'utf8');
 
   return (
-    <ReactMarkdown remarkPlugins={[remarkGfm]} components={customRenderers}>
+    <Markdown remarkPlugins={[remarkGfm]} components={customRenderers}>
       {markdown}
-    </ReactMarkdown>
+    </Markdown>
   );
 }
