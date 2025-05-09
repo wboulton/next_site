@@ -7,7 +7,7 @@ const customRenderers = {
   img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return (
       <img
-        src={`${props.src}`}
+        src= {path.join(process.cwd(), 'src', 'app', 'DaCube', `${props.src}`)}
         alt={props.alt || ''}
         style={{ width: 'auto', height: 'auto', margin: '10px' }}
       />
