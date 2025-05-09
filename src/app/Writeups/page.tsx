@@ -8,7 +8,7 @@ export const writeups = [
     return (
       <ul style={{ listStyleType: 'none', padding: 0 }}>
         {writeups.map((writeup, index) => (
-          <li key={index} style={{ margin: '10px 0' }}>
+          <li key={index} style={{ margin: '10px 20px' }}>
             <a
               href={writeup.route}
               style={{
