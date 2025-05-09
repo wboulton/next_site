@@ -7,7 +7,7 @@ const customRenderers = {
   img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return (
       <img
-        src={`/Writeups/${props.src}`}
+        src={`${props.src}`}
         alt={props.alt || ''}
         style={{ width: 'auto', height: 'auto', margin: '10px' }}
       />
