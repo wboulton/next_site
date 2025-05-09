@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import WriteupList from './writeupList'
+import WriteupList from './writeupList';
 
 function Writeups() {
     const writeups = [
