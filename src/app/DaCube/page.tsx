@@ -1,27 +1,25 @@
 import fs from 'fs/promises';
 import path from 'path';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import WriteupLayout from '../components/WriteupLayout';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
-const customRenderers = {
-  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
-    return (
-      <img
-        src={`/writeups/${props.src}`}
-        alt={props.alt || ''}
-        style={{ width: 'auto', height: 'auto', margin: '10px' }}
-      />
-    );
-  },
-};
-
-export default async function writeupRender() {
-  const filePath = path.join(process.cwd(), 'src', 'app', 'DaCube', 'DeadFace-2024-DaCube.md');
+export default async function DaCubePage() {
+  const filePath = path.join(
+    process.cwd(),
+    'src',
+    'app',
+    'DaCube',
+    'DeadFace-2024-DaCube.md'
+  );
   const markdown = await fs.readFile(filePath, 'utf8');
 
   return (
-    <Markdown remarkPlugins={[remarkGfm]} components={customRenderers}>
-      {markdown}
-    </Markdown>
+    <WriteupLayout
+      currentSlug="DaCube"
+      title="DaCube"
+      subtitle="A Rubik's-cube crypto challenge from DeadFace CTF 2024."
+    >
+      <MarkdownRenderer content={markdown} imageBasePath="/writeups" />
+    </WriteupLayout>
   );
 }

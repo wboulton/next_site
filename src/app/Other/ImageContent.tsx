@@ -1,9 +1,8 @@
 const ImageContent = ({ images }: { images: string[] }) => {
   return (
-    <div>
+    <div className="dog-grid">
       {images.map((image, index) => (
-        <img key={index} src={`/Dog/${image}`} alt={`Dog ${index}`} 
-         style = {{ width: '200px', height: 'auto', margin: '10px' }}/>
+        <img key={index} src={`/Dog/${image}`} alt={`Dog ${index + 1}`} />
       ))}
     </div>
   );

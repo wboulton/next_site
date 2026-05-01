@@ -1,51 +1,25 @@
 import fs from 'fs/promises';
 import path from 'path';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/c';
+import WriteupLayout from '../components/WriteupLayout';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
-const customRenderers = {
-  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
-    return (
-      <img
-        src={`/Writeups/${props.src}`}
-        alt={props.alt || ''}
-        style={{ width: 'auto', height: 'auto', margin: '10px' }}
-      />
-    );
-  },
-};
-
-export default async function writeupRender() {
-  const filePath = path.join(process.cwd(), 'src', 'app', 'calling_convention', 'Bearcat-World-Tour-2025.md');
+export default async function CallingConventionPage() {
+  const filePath = path.join(
+    process.cwd(),
+    'src',
+    'app',
+    'calling_convention',
+    'Bearcat-World-Tour-2025.md'
+  );
   const markdown = await fs.readFile(filePath, 'utf8');
 
   return (
-    <Markdown
-      remarkPlugins={[remarkGfm]}
-      components={{
-        ...customRenderers,
-        code({ node, inline, className, children, ...props }) {
-          const match = /language-(\w+)/.exec(className || '');
-          return !inline && match ? (
-            <SyntaxHighlighter
-              {...props}
-              PreTag="div"
-              language={match[1]}
-              style={dark}
-            >
-              {String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
-          ) : (
-            <code {...props} className={className}>
-              {children}
-            </code>
-          );
-        },
-      }}
+    <WriteupLayout
+      currentSlug="calling_convention"
+      title="Calling Convention"
+      subtitle="Return-oriented setup of a multi-key win condition from Bearcat World Tour 2025."
     >
-      {markdown}
-    </Markdown>
+      <MarkdownRenderer content={markdown} imageBasePath="/writeups" />
+    </WriteupLayout>
   );
 }
