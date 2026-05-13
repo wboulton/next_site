@@ -14,13 +14,17 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_ROOT }}
           key: ${{ secrets.SSH_KEY }}
+          debug: true
+          script_stop: true
+          command_timeout: 10m
           script: |
-            set -e
+            set -ex
+            whoami
             cd /home/cyberg/next_site
-            git fetch origin
+            git remote -v
+            GIT_SSH_COMMAND="ssh -v" git fetch origin
             git reset --hard origin/main
             git log -1 --oneline
-            git pull
             docker rm -f next-site || true
             docker build -t next-site .
             docker run -d \
