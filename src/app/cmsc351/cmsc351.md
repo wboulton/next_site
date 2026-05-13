@@ -1,8 +1,6 @@
 I competed in UMDCTF for the first time this year. Besides the interesting (and fun) theming, this was a great ctf with a lot of interesting challenges. Here, I am going to write up one particularly interesting challenge _cmsc351_, which let me get some practice with my new [binary ninja](https://binary.ninja/) license.
 
 # cmsc351
-![alt text](images/cmsc351.jpg)
-
 In this challenge we are given a stripped binary:
 ```bash
 ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=aa38ce7cf77d92eeebb80e23bf34c8f20bc8d4cb, for GNU/Linux 4.4.0, stripped

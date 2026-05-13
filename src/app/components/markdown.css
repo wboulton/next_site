@@ -90,6 +90,11 @@
 
 .markdown-body ol li::marker {
   color: var(--text-faint);
+  font-size: 1.05rem;
+}
+
+.markdown-body ol li p strong {
+  font-size: 1.05rem;
 }
 
 .markdown-body blockquote {
@@ -106,7 +111,7 @@
   margin-top: 0.5rem;
 }
 
-.markdown-body code {
+.markdown-body :not(pre) > code {
   font-family: var(--font-mono);
   font-size: 0.88em;
   padding: 0.15em 0.4em;
@@ -120,29 +125,59 @@
   margin: 0;
   padding: 0;
   background: transparent;
-  overflow: hidden;
-}
-
-.markdown-body pre code {
-  display: block;
-  padding: 0;
-  background: transparent;
   border: none;
   border-radius: 0;
-  color: inherit;
-  font-size: 0.88rem;
-  line-height: 1.55;
+  overflow: visible;
 }
 
-.markdown-body pre > div,
-.markdown-body .code-block {
+.markdown-body pre > code {
+  display: block;
+  padding: 1rem 1.1rem;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-x: auto;
+  color: #e0e6f3;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  white-space: pre;
+}
+
+/* react-syntax-highlighter renders <pre><div class="code-block"><code>…spans…
+   Every rule below uses !important because the one-dark theme writes its own
+   inline style="..." onto the wrapper div, the inner code, and every token
+   span — including a text-shadow that renders as a thin grey bar under each
+   line of code. The cascade can't win against inline styles without it. */
+.markdown-body pre .code-block {
+  margin: 0 !important;
+  padding: 1rem 1.1rem !important;
   background: var(--code-bg) !important;
   border: 1px solid var(--border) !important;
   border-radius: 8px !important;
-  padding: 1rem 1.1rem !important;
   font-size: 0.85rem !important;
   line-height: 1.55 !important;
-  overflow-x: auto;
+  overflow: auto !important;
+}
+
+.markdown-body pre .code-block code {
+  background: transparent !important;
+  border: transparent !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+}
+
+.markdown-body pre,
+.markdown-body pre *,
+.markdown-body .code-block,
+.markdown-body .code-block * {
+  text-shadow: none !important;
+  text-decoration: none !important;
+}
+
+.markdown-body .code-block .line-highlight {
+  display: none !important;
 }
 
 .markdown-body img {

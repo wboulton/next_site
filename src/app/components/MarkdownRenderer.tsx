@@ -26,18 +26,13 @@ const MarkdownRenderer = ({ content, imageBasePath }: MarkdownRendererProps) => 
         code({ className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '');
           if (match) {
+            // All visual styling lives in markdown.css under `.code-block`.
             return (
               <SyntaxHighlighter
                 PreTag="div"
                 language={match[1].toLowerCase()}
                 style={oneDark}
                 className="code-block"
-                customStyle={{
-                  margin: 0,
-                  background: 'var(--code-bg)',
-                  fontSize: '0.85rem',
-                  borderRadius: '8px',
-                }}
               >
                 {String(children).replace(/\n$/, '')}
               </SyntaxHighlighter>
