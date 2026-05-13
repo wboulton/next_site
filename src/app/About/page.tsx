@@ -7,16 +7,17 @@ export default function AboutPage() {
             <div className="article-eyebrow">About</div>
             <h1 className="article-title">William Boulton</h1>
             <p className="article-subtitle">
-              CS @ Purdue &middot; cybersecurity, CTFs, and reverse engineering
+              CS @ Purdue
             </p>
           </header>
 
           <div className="article-body markdown-body">
             <p>
-              I&apos;m a freshman at Purdue University in West Lafayette,
+              I&apos;m a junior at Purdue University in West Lafayette,
               Indiana, studying computer science with a focus on cybersecurity.
-              I&apos;m most interested in CTFs and offensive security &mdash;
-              particularly the reverse engineering category.
+              I&apos;m involved in b01lers (Purdue's CTF team) and undergraduate research on
+              software supply chain security and supply chain optimizaiton.
+              I am most intrested in software supply chain and cloud security, and quantum computing.
             </p>
 
             <h2>Contact</h2>

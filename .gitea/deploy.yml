@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /path/to/your/repo
+            git pull
+            sudo docker rm -f next-site || true
+            sudo docker build -t next-site .
+            sudo docker run -d \
+              --name next-site \
+              --restart unless-stopped \
+              -p 3000:3000 \
+              next-site
