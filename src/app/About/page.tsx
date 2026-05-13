@@ -17,7 +17,7 @@ export default function AboutPage() {
               Indiana, studying computer science with a focus on cybersecurity.
               I&apos;m involved in b01lers (Purdue's CTF team) and undergraduate research on
               software supply chain security and supply chain optimizaiton.
-              I am most intrested in software supply chain and cloud security, and quantum computing.
+              I am most intrested in software supply chain and cloud security and quantum computing.
             </p>
 
             <h2>Contact</h2>
