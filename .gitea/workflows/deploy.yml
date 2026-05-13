@@ -12,14 +12,14 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          username: ${{ secrets.SSH_ROOT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /path/to/your/repo
             git pull
-            sudo docker rm -f next-site || true
-            sudo docker build -t next-site .
-            sudo docker run -d \
+            docker rm -f next-site || true
+            docker build -t next-site /home/cyberg/next_site
+            docker run -d \
               --name next-site \
               --restart unless-stopped \
               -p 3000:3000 \
