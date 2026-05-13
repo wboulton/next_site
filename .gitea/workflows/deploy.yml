@@ -15,12 +15,17 @@ jobs:
           username: ${{ secrets.SSH_ROOT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /path/to/your/repo
+            set -e
+            cd /home/cyberg/next_site
+            git fetch origin
+            git reset --hard origin/main
+            git log -1 --oneline
             git pull
             docker rm -f next-site || true
-            docker build -t next-site /home/cyberg/next_site
+            docker build -t next-site .
             docker run -d \
               --name next-site \
               --restart unless-stopped \
               -p 3000:3000 \
               next-site
+            echo "==DONE=="
