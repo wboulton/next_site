@@ -9,20 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_ROOT }}
-          key: ${{ secrets.SSH_KEY }}
-          debug: true
-          script_stop: true
-          command_timeout: 10m
-          script: |
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_ROOT }}
+          SSH_KEY:  ${{ secrets.SSH_KEY }}
+        run: |
+          set -e
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          ssh -i ~/.ssh/deploy_key "$SSH_USER@$SSH_HOST" '
             set -ex
-            whoami
             cd /home/cyberg/next_site
             git remote -v
-            GIT_SSH_COMMAND="ssh -v" git fetch origin
+            git fetch origin
             git reset --hard origin/main
             git log -1 --oneline
             docker rm -f next-site || true
@@ -33,3 +35,4 @@ jobs:
               -p 3000:3000 \
               next-site
             echo "==DONE=="
+          '
