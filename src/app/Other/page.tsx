@@ -4,9 +4,9 @@ import ImageContent from './ImageContent';
 import './other.css';
 
 async function fetchImages(): Promise<string[]> {
-  const filePath = path.join(process.cwd(), 'public', 'Dog', 'images.json');
-  const data = await fs.readFile(filePath, 'utf8');
-  return JSON.parse(data);
+  const dirPath = path.join(process.cwd(), 'public', 'Dog');
+  const entries = await fs.readdir(dirPath);
+  return entries.filter((name) => name.toLowerCase().endsWith('.jpg')).sort();
 }
 
 export default async function OtherPage() {
