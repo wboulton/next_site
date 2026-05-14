@@ -8,3 +8,5 @@ in the project root.
 
 ## gitea
 A gitea action is set up to auto redeploy when I push to main. Instructions will be here soon
+
+Gitea uses the public github repo as a push mirror to allow this code to be public facing without publicizing my gitea instance.

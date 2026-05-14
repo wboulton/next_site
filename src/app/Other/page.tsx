@@ -18,7 +18,7 @@ export default async function OtherPage() {
         <article className="article article-wide">
           <header className="article-header">
             <div className="article-eyebrow">Other</div>
-            <h1 className="article-title">Doggo</h1>
+            <h1 className="article-title">Dog</h1>
             <p className="article-subtitle">Just some pictures of my dog for now.</p>
           </header>
           <ImageContent images={images} />
