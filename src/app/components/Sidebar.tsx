@@ -35,8 +35,6 @@ const Sidebar = ({ currentSlug }: SidebarProps) => {
           })}
         </ul>
       </nav>
-
-      <div className="sidebar-footer">Made with Next.js</div>
     </aside>
   );
 };
