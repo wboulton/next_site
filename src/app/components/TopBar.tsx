@@ -18,6 +18,9 @@ const TopBar = () => {
         <Link href="/Writeups" className="top-bar-link">
           Writeups
         </Link>
+        <Link href="/blog" className="top-bar-link">
+          Blog
+        </Link>
         <Link href="/Other" className="top-bar-link">
           Other
         </Link>

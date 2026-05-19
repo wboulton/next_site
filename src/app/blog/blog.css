@@ -1,0 +1,77 @@
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.writeup-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  transition: background 120ms ease, border-color 120ms ease, transform 120ms ease;
+}
+
+.writeup-card:hover {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+  text-decoration: none;
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.writeup-card-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(90, 143, 214, 0.12);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.writeup-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.writeup-card-event {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.writeup-card-excerpt {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-post.markdown-body > p {
+  text-indent: 0em;
+}
+
+.blog-post.markdown-body > p + p {
+  margin-top: 2rem;
+}
+
+.blog-post.markdown-body > p + pre {
+  margin-top: 1.5rem;
+}
+
+.blog-post.markdown-body > pre + p {
+  margin-top: 1.5rem;
+}
