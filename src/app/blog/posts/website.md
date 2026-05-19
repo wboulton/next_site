@@ -56,17 +56,41 @@ jobs:
           ssh -i ~/.ssh/deploy_key "$SSH_USER@$SSH_HOST" '
             set -ex
             cd /home/cyberg/next_site
-            git remote -v
             git fetch origin
             git reset --hard origin/main
             git log -1 --oneline
+
+            docker build -t next-site:new .
+
+            docker rm -f next-site-new || true
+            docker run -d \
+              --name next-site-new \
+              -p 3001:3000 \
+              next-site:new
+
+            for i in {1..30}; do
+              if curl -fs http://localhost:3001 > /dev/null; then
+                echo "New container is healthy"
+                break
+              fi
+              if [ $i -eq 30 ]; then
+                echo "New container failed health check"
+                docker logs next-site-new
+                docker rm -f next-site-new
+                exit 1
+              fi
+              sleep 1
+            done
+
+            docker rm -f next-site-new
             docker rm -f next-site || true
-            docker build -t next-site .
+            docker tag next-site:new next-site:latest
             docker run -d \
               --name next-site \
               --restart unless-stopped \
               -p 3000:3000 \
-              next-site
+              next-site:latest
+
             echo "==DONE=="
           '
 ```
