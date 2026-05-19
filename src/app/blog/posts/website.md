@@ -18,7 +18,7 @@ I picked up a Supermicro server from the Purdue University surplus store last su
 
 ![alt text](IMG_8544.jpg)
 
-At the time my whole setup (including server rack, hard drives, extra DDR4 ECC RAM, etc.) cost only about $300. With the increase in RAM prices, the RAM alone is worth more than double that. My goal has been to run my website out of this server as conveniently as possible. I have a separate virtual machine that builds and hosts my app for production (I will talk more about the building in the next section).
+At the time my whole setup (including server rack, hard drives, extra DDR4 ECC RAM, etc.) cost only about $300. With the increase in RAM prices, the RAM alone is worth more than double that. My goal has been to run my website out of this server as conveniently as possible. My server run proxmox, so I have a virtual machine that builds and hosts my app for production (I will talk more about the building in the next section).
 
 My problem has always been trying to expose this website to the internet. I tried a couple of tunnels to manage this. My server is connected to my other devices through Tailscale, so naturally the first tunnel I tried was the built-in Tailscale tunnel. This tunnel worked fine; I was able to see and use the website as expected from devices not on my tailnet. However, I wasn't able to properly use my domain. While my website was using this tunnel, I just had GoDaddy redirect the domain to my Tailscale tunnel with a URL like
 `https://williamboultondotcom.tailad56e4.ts.net/`
