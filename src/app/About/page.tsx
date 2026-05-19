@@ -7,7 +7,7 @@ export default function AboutPage() {
             <div className="article-eyebrow">About</div>
             <h1 className="article-title">William Boulton</h1>
             <p className="article-subtitle">
-              Computer Science Student at Purdue University
+              Computer science honors student at Purdue University
             </p>
           </header>
 
