@@ -37,7 +37,7 @@ export default async function BlogPostPage({
             <div className="article-eyebrow">{formattedDate}</div>
           </header>
           <div className="article-body markdown-body blog-post">
-            <MarkdownRenderer content={markdown} />
+            <MarkdownRenderer content={markdown} imageBasePath="/blog" />
           </div>
         </article>
       </main>
