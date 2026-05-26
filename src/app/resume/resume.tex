@@ -1,0 +1,250 @@
+%-------------------------
+% Resume in Latex
+% Author : Harshibar
+% Based off of: https://github.com/jakeryang/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+% only for pdflatex
+% \input{glyphtounicode}
+
+% fontawesome
+\usepackage{fontawesome5}
+
+% fixed width
+\usepackage[scale=0.90,lf]{FiraMono}
+
+% light-grey
+\definecolor{light-grey}{gray}{0.83}
+\definecolor{dark-grey}{gray}{0.3}
+\definecolor{text-grey}{gray}{.08}
+
+\DeclareRobustCommand{\ebseries}{\fontseries{eb}\selectfont}
+\DeclareTextFontCommand{\texteb}{\ebseries}
+
+% custom underilne
+\usepackage{contour}
+\usepackage[normalem]{ulem}
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.8pt}
+\newcommand{\myuline}[1]{%
+  \uline{\phantom{#1}}%
+  \llap{\contour{white}{#1}}%
+}
+
+
+% custom font: helvetica-style
+\usepackage{tgheros}
+\renewcommand*\familydefault{\sfdefault}
+%% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\textwidth}{1.5in}
+\addtolength{\topmargin}{-.75in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting - serif
+% \titleformat{\section}{
+%   \vspace{2pt} \scshape \raggedright\large % header section
+% }{}{0em}{}[\color{black} \titlerule \vspace{-5pt}]
+
+% TODO EBSERIES
+% sans serif sections
+\titleformat{\section}{
+    \bfseries \vspace{1pt} \raggedright \large
+}{}{0em}{}[
+    \color{light-grey}{\titlerule[1pt]} \vspace{-7pt}
+]
+
+\titlespacing*{\section}
+{0pt}
+{4pt}
+{12pt}
+% only for pdflatex
+% Ensure that generate pdf is machine readable/ATS parsable
+% \pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-1pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & {\color{dark-grey}\small #2}\vspace{1pt}\\ % top row of resume entry
+      \textit{#3} & {\color{dark-grey} \small #4}\\ % second row of resume entry
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      #1 & {\color{dark-grey}} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+% CHANGED default leftmargin  0.15 in
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
+
+\color{text-grey}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \textbf{William D. Boulton}} \\[6pt]
+
+    \small
+    \faPhone\ 513.586.8099 \quad
+    \faEnvelope\ \href{mailto:wboulton@purdue.edu}{wboulton@purdue.edu} \quad
+    \faLinkedin\ \href{https://www.linkedin.com/in/william-boulton-a958832ba/}{linkedin.com/in/william-boulton-a958832ba}
+
+    \\[3pt]
+
+    \faGithub\ \href{https://github.com/wboulton}{github.com/wboulton}
+    \quad
+    \faGlobe\ \href{https://williamboulton.com}{williamboulton.com}
+\end{center}
+%-----------OBJECTIVE-----------
+\section{OBJECTIVE}
+\small{I am a student at Purdue University looking for career and research opportunities in software development and cybersecurity to apply my interest in mathematics and computer science.}
+\vspace{4pt}
+
+%-----------EDUCATION-----------
+\section{EDUCATION}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Purdue University}{Expected Graduation: Spring 2027}
+      {Bachelor of Science -- Computer Science Honors\quad GPA: 3.95}{West Lafayette, IN}
+      \resumeItemListStart
+        \resumeItem{\textbf{Dean's List}: 2024--2026}
+        \resumeItem{\textbf{Semester Honors}: 2024--2026}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{EXPERIENCE}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Trustworthy Software Ecosystems}{2025 -- Present}
+      {Undergraduate Researcher}{Purdue University}
+      \resumeItemListStart
+        \resumeItem{Co-authored \textbf{Debtrace}, a paper which traced the Debian software ecosystem to find discrepancies in the software supply chain}
+        \resumeItem{Determined the Debian reproducibility project over-reports packages as reproducible by \textbf{30\%}}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Purdue College of Engineering}{2025}
+      {Summer Undergraduate Research Fellow (SURF)}{Purdue University}
+      \resumeItemListStart
+        \resumeItem{Developing a prototype of a \textbf{Trusted Builder Service} to ensure security during the software rebuilding process}
+        \resumeItem{Used a trusted application in \textbf{Arm TrustZone} to oversee and endorse software builds}
+        \resumeItem{Developed components for \textbf{SBOMctl} to create trustworthy software supply chain infrastructure capable of preventing widespread supply chain compromises (i.e. SOLARBURST, JetBrains TeamCity compromise, NotPetya)}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Intelligent Generation of Tools for Security (INGOTS)}{2025}
+      {Undergraduate Research Assistant}{Purdue University}
+      \resumeItemListStart
+        \resumeItem{Vulnerability research on \textbf{Android userspace applications and kernels}, primarily focused on recreating and debugging Chromium and Android kernel exploits}
+        \resumeItem{Developed Android exploitation tools as part of the \textbf{DARPA INGOTS} research project}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Siemens Digital Industries Software}{2024}
+      {Career Start Intern}{Multinational (Japan, India, United States)}
+      \resumeItemListStart
+        \resumeItem{Created and implemented a \textbf{Mendix-powered web application} that automated the interview scheduling process for the head of the Career Start Internship program}
+        \resumeItem{Used \textbf{AWS} to analyze user statistics and develop solutions to increase efficiency for company websites}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------ACTIVITIES / SERVICE-----------
+\section{ACTIVITIES \& PROJECTS}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{b01lers} -- Purdue Capture the Flag (CTF) Offensive Security Team}{2024 -- Present}
+          \resumeItemListStart
+            \resumeItem{Compete in weekly CTFs and attend/host weekly training sessions; developed challenges for \textbf{b01lersCTF} in 2025 and 2026}
+            \resumeItem{Placed \textbf{top 10 in the United States} in 2024 and 2025 and \textbf{2nd place in MITRE eCTF} 2025}
+            \resumeItem{Maintained b01lers server infrastructure used to host b01lersCTF and internal competitions and tools}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{The Data Mine} -- Data Science Focused Learning Community}{2024}
+          \resumeItemListStart
+            \resumeItem{Developed data science-related \textbf{R and Python} programming skills through weekly projects}
+            \resumeItem{Contributed to physics research through analysis of data produced in the \textbf{LHC at CERN}}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+
+%-----------SKILLS-----------
+\section{SKILLS}
+ \begin{itemize}[leftmargin=0in, label={}]
+    \small{\item{
+     \textbf{Programming Languages} {: Python, Java, R, TypeScript, Rust, C}\vspace{2pt} \\
+     \textbf{Cloud}                 {: AWS, Microsoft Azure}\vspace{2pt} \\
+     \textbf{Additional Tools}      {: git, Ghidra, Binary Ninja, qemu}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}
