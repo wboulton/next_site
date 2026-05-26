@@ -26,14 +26,25 @@ FROM node:${NODE_VERSION} AS builder
 
 WORKDIR /app
 
+# pdflatex (+ packages used by src/app/resume/resume.tex) for the prebuild step
+# that compiles the resume into public/resume.pdf. Runtime image does not need
+# these, so they live only in the builder stage.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    texlive-latex-base \
+    texlive-latex-recommended \
+    texlive-latex-extra \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Requires `output: 'standalone'` in next.config.ts so this populates
-# .next/standalone with a self-contained server bundle.
+# `npm run build` first runs scripts/build-resume.mjs (via `prebuild`) to
+# generate public/resume.pdf, then `next build` produces .next/standalone.
 RUN npm run build
 
 # ============================================

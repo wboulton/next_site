@@ -6,7 +6,7 @@ export default function ResumePage() {
           <div className="article-eyebrow">Resume</div>
 
           <object
-            data="/resume/pdf"
+            data="/resume.pdf"
             type="application/pdf"
             style={{
               width: '100%',
@@ -17,7 +17,7 @@ export default function ResumePage() {
           >
             <p>
               Your browser can&apos;t display PDFs inline.{' '}
-              <a href="/resume/pdf">Open the resume PDF</a>.
+              <a href="/resume.pdf">Open the resume PDF</a>.
             </p>
           </object>
         </article>
