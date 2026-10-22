@@ -1,4 +1,6 @@
+import { execFile } from 'child_process';
 import fs from 'fs/promises';
+import { promisify } from 'util';
 import path from 'path';
 
 export type BlogPost = {
@@ -15,6 +17,38 @@ export const postsDir = path.join(
   'blog',
   'posts'
 );
+
+const execFileAsync = promisify(execFile);
+
+export async function getBlogPostCreatedAt(filePath: string): Promise<Date> {
+  const { stdout } = await execFileAsync(
+    'git',
+    [
+      'log',
+      '--follow',
+      '--diff-filter=A',
+      '--format=%aI',
+      '--',
+      path.relative(process.cwd(), filePath),
+    ],
+    { cwd: process.cwd() }
+  );
+  const addedAt = stdout.trim().split('\n').filter(Boolean).pop();
+
+  // Uncommitted posts can still be previewed locally.
+  const date = addedAt ?? (await fs.stat(filePath)).birthtime.toISOString();
+  // Preserve the calendar date in the original commit's timezone.
+  return new Date(`${date.slice(0, 10)}T00:00:00.000Z`);
+}
+
+export function formatBlogPostDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+}
 
 const extractTitle = (markdown: string, fallback: string): string => {
   const match = markdown.match(/^#\s+(.+?)\s*$/m);
@@ -48,8 +82,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
   const posts = await Promise.all(
     mdFiles.map(async (file) => {
       const filePath = path.join(postsDir, file);
-      const [stat, content] = await Promise.all([
-        fs.stat(filePath),
+      const [createdAt, content] = await Promise.all([
+        getBlogPostCreatedAt(filePath),
         fs.readFile(filePath, 'utf8'),
       ]);
       const slug = file.replace(/\.md$/, '');
@@ -57,7 +91,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
         slug,
         title: extractTitle(content, slug),
         excerpt: extractExcerpt(content),
-        createdAt: stat.birthtime,
+        createdAt,
       };
     })
   );

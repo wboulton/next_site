@@ -26,10 +26,12 @@ FROM node:${NODE_VERSION} AS builder
 
 WORKDIR /app
 
+# Git supplies the original blog publication dates during static generation.
 # pdflatex (+ packages used by src/app/resume/resume.tex) for the prebuild step
 # that compiles the resume into public/resume.pdf. Runtime image does not need
 # these, so they live only in the builder stage.
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
     texlive-latex-base \
     texlive-latex-recommended \
     texlive-latex-extra \

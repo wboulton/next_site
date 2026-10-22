@@ -2,9 +2,12 @@ import fs from 'fs/promises';
 import path from 'path';
 import { notFound } from 'next/navigation';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
-import { getBlogPosts, postsDir } from '../posts.lib';
+import { formatBlogPostDate, getBlogPostCreatedAt, getBlogPosts, postsDir } from '../posts.lib';
 import '../../components/WriteupLayout.css';
 import '../blog.css';
+
+// Every post is rendered at build time, when Git history is available.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -23,11 +26,7 @@ export default async function BlogPostPage({
   if (!stat) notFound();
 
   const markdown = await fs.readFile(filePath, 'utf8');
-  const formattedDate = stat.birthtime.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  const formattedDate = formatBlogPostDate(await getBlogPostCreatedAt(filePath));
 
   return (
     <div className="page-shell">

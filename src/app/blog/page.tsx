@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getBlogPosts } from './posts.lib';
+import { formatBlogPostDate, getBlogPosts } from './posts.lib';
 import './blog.css';
 
 export default async function BlogIndexPage() {
@@ -21,11 +21,7 @@ export default async function BlogIndexPage() {
               <Link key={p.slug} href={`/blog/${p.slug}`} className="writeup-card">
                 <span className="writeup-card-title">{p.title}</span>
                 <span className="writeup-card-event">
-                  {p.createdAt.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
+                  {formatBlogPostDate(p.createdAt)}
                 </span>
                 {p.excerpt && (
                   <span className="writeup-card-excerpt">{p.excerpt}</span>
