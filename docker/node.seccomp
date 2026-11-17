@@ -1,0 +1,15 @@
+// This filter stacks with docker/seccomp.json. Revoke the namespace/mount
+// operations needed by the supervisor before executing application code.
+POLICY node {
+    ERRNO(1) {
+        mount, umount, pivot_root, chroot, unshare, setns,
+        sethostname, setdomainname, ptrace, process_vm_readv, process_vm_writev,
+        bpf, perf_event_open, userfaultfd, keyctl, add_key, request_key,
+        init_module, finit_module, delete_module, kexec_load, reboot,
+        open_by_handle_at,
+        clone(flags) { (flags & 0x7e020080) != 0 }
+    },
+    // Let glibc fall back to clone, whose namespace flags are checked above.
+    ERRNO(38) { clone3 }
+}
+USE node DEFAULT ALLOW

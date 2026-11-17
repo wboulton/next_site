@@ -27,13 +27,11 @@ jobs:
             git reset --hard origin/main
             git log -1 --oneline
 
-            docker build -t next-site:new .
+            docker build --pull -t next-site:new .
 
             docker rm -f next-site-new || true
-            docker run -d \
-              --name next-site-new \
-              -p 3001:3000 \
-              next-site:new
+            trap "docker rm -f next-site-new >/dev/null 2>&1 || true" EXIT
+            bash scripts/run-container.sh next-site:new next-site-new 3001
 
             for i in {1..30}; do
               if curl -fs http://localhost:3001 > /dev/null; then
@@ -49,14 +47,13 @@ jobs:
               sleep 1
             done
 
+            bash scripts/check-sandbox.sh next-site-new
+
             docker rm -f next-site-new
+            trap - EXIT
             docker rm -f next-site || true
             docker tag next-site:new next-site:latest
-            docker run -d \
-              --name next-site \
-              --restart unless-stopped \
-              -p 3000:3000 \
-              next-site:latest
+            bash scripts/run-container.sh next-site:latest next-site 3000
 
             echo "==DONE=="
           '

@@ -7,22 +7,28 @@
     "prebuild": "node scripts/build-resume.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "biome lint .",
+    "typecheck": "tsc --noEmit",
+    "test:sandbox": "bash scripts/check-sandbox.sh"
+  },
+  "engines": {
+    "node": "^26.13.1"
   },
   "dependencies": {
-    "next": "15.1.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-markdown": "^9.0.3",
-    "react-router-dom": "^7.1.5",
-    "react-syntax-highlighter": "^15.6.1",
-    "remark-gfm": "^4.0.1"
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-markdown": "10.1.0",
+    "react-router-dom": "7.18.5",
+    "react-syntax-highlighter": "16.1.2",
+    "remark-gfm": "4.0.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@types/react-syntax-highlighter": "^15.5.13",
-    "typescript": "^5"
+    "@biomejs/biome": "2.6.8",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/react-syntax-highlighter": "15.5.13",
+    "typescript": "7.0.2"
   }
 }
